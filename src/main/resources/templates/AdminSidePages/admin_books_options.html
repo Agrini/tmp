@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>LMS-Admin Manage Books</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+
+<body>
+		<div th:insert="header"></div>
+	<div class="container text-center">
+		<div>
+			<h2>LMS : Admin <h2 th:text="${admin.adminName}"></h2></h2>
+		</div>
+		
+		<hr>
+		<hr>
+		<div>
+			<h2>Add a New Book</h2>
+		</div>
+		<form th:action="@{/admin/process_adding_book}" method="POST" th:object="${book}" style="max-width:600px ; margin: 0 auto;">
+			<div class="m-3">
+	
+				<div class="form-group row">
+					<label class="col-form-label col-4">Book Name: </label>
+					<div class="col-8">
+						<input type="text" class="form-control" th:field="*{bookName}" required minlength="3" maxlength="60"/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-4">Author Name: </label>
+					<div class="col-8">
+						<input type="text" class="form-control" th:field="*{authorName}" required minlength="3" maxlength="60"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-form-label col-4">Book Category: </label>
+					<div class="col-8">
+						<input type="text" class="form-control" th:field="*{category}" required minlength="3" maxlength="60"/>
+					</div>
+				</div>	
+				
+				<div class="form-group row">
+					<label class="col-form-label col-4">Total number of books: </label>
+					<div class="col-8">
+						<input type="number" class="form-control" th:field="*{totalBooks}" required />
+					</div>
+				</div>	
+				
+				<div>
+					<button type="submit" class="btn btn-primary">Add Book</button>
+				</div>	
+				<br>
+				<div class="container text-center">
+					<!-- <h3 th:text="${registration_message}"></h3> -->
+					<div class="alert alert-primary" role="alert" th:text="${book_added}" th:if="${book_added}"></div>
+				</div>			
+			</div>
+		</form>
+		
+		
+		
+		<!-- View Books-->
+		
+		<hr>
+		<hr>
+		
+		
+		<div>
+			<h2>Search and View Books</h2>
+		</div >
+		<div class="container">
+		  <div class="row">
+		    <div class="col-sm">
+		    
+		      <form th:action="@{/admin/process_searching_book_by_name}" method="POST" style="max-width:600px ; margin: 0 auto;">
+				<div class="m-3">
+					<div >
+						<div class="col-8 ">
+							<input type="text" class="form-control" th:name="searchBookName" placeholder="Enter Book Name" required minlength="3" maxlength="60"/>
+						</div>
+						<br>
+						<div class="col-8 ">
+							<button type="submit" class="btn btn-primary">Search by Book Name</button>
+						</div>	
+						<br>	
+					</div>	
+				</div>
+				</form>
+			
+		    </div>
+		    <div class="col-sm">
+		      <form th:action="@{/admin/process_searching_book_by_author}" method="POST" style="max-width:600px ; margin: 0 auto;">
+				<div class="m-3">
+					<div >
+						<div class="col-8 ">
+							<input type="text" class="form-control" th:name="searchBookAuthor" placeholder="Enter AuthorName" required minlength="3" maxlength="60"/>
+						</div>
+						<br>
+						<div class="col-8 ">
+							<button type="submit" class="btn btn-primary">Search by Author Name</button>
+						</div>	
+						<br>	
+					</div>	
+				</div>
+				</form>
+		    </div>
+		    <div class="col-sm">
+		      <form th:action="@{/admin/process_searching_book_by_category}" method="POST" style="max-width:600px ; margin: 0 auto;">
+				<div class="m-3">
+					<div >
+						<div class="col-8 ">
+							<input type="text" class="form-control" th:name="searchBookCategory" placeholder="Enter a Category" required minlength="3" maxlength="60"/>
+						</div>
+						<br>
+						<div class="col-8 ">
+							<button type="submit" class="btn btn-primary">Search by Category</button>
+						</div>	
+						<br>	
+					</div>	
+				</div>
+				</form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

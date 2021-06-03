@@ -1,0 +1,101 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>LMS-Admin Manage Member</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+
+<body>
+		<div th:insert="header"></div>
+	<div class="container text-center">
+		<div>
+			<h2>LMS : Admin <h2 th:text="${admin.adminName}"></h2></h2>
+		</div>
+		
+		<hr>
+		<hr>
+		<div>
+			<h2>Add a New Member</h2>
+		</div>
+		<form th:action="@{/admin/process_member_registration}" method="POST"  style="max-width:600px ; margin: 0 auto;">
+			<div class="m-3">
+	
+				<div class="form-group row">
+					<label class="col-form-label col-4">Member Email Id: </label>
+					<div class="col-8">
+						<input type="email" class="form-control" th:name="memberMailId" required minlength="3" maxlength="30"/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-4">Member Name: </label>
+					<div class="col-8">
+						<input type="text" class="form-control" th:name="memberName" required minlength="3" maxlength="30"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-form-label col-4">Member Password: </label>
+					<div class="col-8">
+						<input type="password" class="form-control" th:name="mpassword" required minlength="3" maxlength="20"/>
+					</div>
+				</div>	
+				
+				<div class="form-group row">
+					<label class="col-form-label col-4">Member Phone No.: </label>
+					<div class="col-8">
+						<input type="tel" class="form-control" th:name="phoneNumber" required />
+					</div>
+				</div>	
+				
+				<div>
+					<button type="submit" class="btn btn-primary">Sign Up Member</button>
+				</div>	
+				<br>
+				<div class="container text-center">
+					<!-- <h3 th:text="${registration_message}"></h3> -->
+					<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+					<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+				</div>			
+			</div>
+		</form>
+		
+		
+		
+		<!-- Viewing a user's issue history -->
+		
+		<hr>
+		<hr>
+		
+		<!-- Removing a user based on member mail_Id -->
+		
+		<div>
+			<h2>Remove an existing member</h2>
+		</div>
+		<form th:action="@{/admin/process_removing_member}" method="POST"  style="max-width:600px ; margin: 0 auto;">
+			<div class="m-3">
+	
+				<div class="form-group row">
+					<label class="col-form-label col-4">Enter Member Email Id: </label>
+					<div class="col-8">
+						<input type="email" class="form-control" th:name="memberMailId" required minlength="3" maxlength="30"/>
+					</div>
+				</div>
+				
+				<div>
+					<button type="submit" class="btn btn-primary">Remove Member</button>
+				</div>	
+				<br>
+					<div class="container text-center">
+					<!-- <h3 th:text="${registration_message}"></h3> -->
+					<div class="alert alert-primary" role="alert" th:text="${removal_successful}" th:if="${removal_successful}"></div>
+					<div class="alert alert-danger" role="alert" th:text="${mail_id_not_found}" th:if="${mail_id_not_found}"></div>
+				</div>	
+				</div>			
+			</div>
+		</form>
+	</div>
+  
+</body>
+</html>

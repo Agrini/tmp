@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeLeaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>LMS-Admin Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+		<div th:insert="header"></div>
+	<div class="container text-center">
+		<div>
+			<h2>Welcome</h2>
+			<h1 th:text="${admin.adminName}"></h1>
+		</div>
+		<br>
+		<br>
+		
+		<div>
+			<div >
+			<br>
+				<form th:action="@{/admin/manage_members}">
+			  		<input type="submit" value="Manage Members" class="btn btn-primary span2">
+				</form>
+			<br>
+				<form th:action="@{/admin/manage_books}">
+			  		<input type="submit" value="Manage Books" class="btn btn-primary span2">
+				</form>
+			<br>
+				<form th:action="@{/manage_issues}">
+			  		<input type="submit" value="Manage Issues" class="btn btn-primary">
+				</form>
+			<br>
+				<form th:action="@{/manage_recommendations}">
+			  		<input type="submit" value="Manage Recommendations" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+</body>
+</html>

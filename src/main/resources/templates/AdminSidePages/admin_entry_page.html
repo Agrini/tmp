@@ -1,0 +1,100 @@
+
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>LMS-Admin Entry Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+
+<body>
+		<div th:insert="header"></div>
+	<div class="container text-center">
+		<div>
+			<h2>Welcome to Library Management System </h2>
+		</div>
+		<div>
+			<h2>Admin</h2>
+		</div>
+		
+		
+		<hr>
+		<hr>
+		<div>
+			<div>
+			<h3>Registration</h3>
+				<form th:action="@{/process_admin_registration}" method="POST" th:object="${admin}" style="max-width:600px ; margin: 0 auto;">
+						<div class="m-3">
+				
+							<div class="form-group row">
+								<label class="col-form-label col-4">Email Id: </label>
+								<div class="col-8">
+									<input type="email" class="form-control" th:field="*{adminMailId}" required minlength="3" maxlength="30"/>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-form-label col-4">Name: </label>
+								<div class="col-8">
+									<input type="text" class="form-control" th:field="*{adminName}" required minlength="3" maxlength="30"/>
+								</div>
+							</div>
+	
+							<div class="form-group row">
+								<label class="col-form-label col-4">Password: </label>
+								<div class="col-8">
+									<input type="password" class="form-control" th:field="*{apassword}" required minlength="3" maxlength="20"/>
+								</div>
+							</div>	
+							
+							<div>
+								<button type="submit" class="btn btn-primary">Sign Up</button>
+							</div>
+			
+							<div class="container text-center">
+								<div class="alert alert-primary" role="alert" th:text="${registration_successful}" th:if="${registration_successful}"></div>
+								<div class="alert alert-danger" role="alert" th:text="${registration_error}" th:if="${registration_error}"></div>
+							</div>					
+						</div>
+					</form>
+				</div>
+			</div>
+			<br>
+			
+			
+			<hr>
+			<hr>
+			<div>
+			<h3>Log In</h3>
+				<form th:action="@{/process_admin_login}" method="POST" style="max-width:600px ; margin: 0 auto;">
+			<div class="m-3">
+	
+				<div class="form-group row">
+					<label class="col-form-label col-4">Email Id: </label>
+					<div class="col-8">
+						<input type="email" class="form-control" th:name="mailId" required minlength="3" maxlength="30"/>
+					</div>
+				</div>
+		
+				<div class="form-group row">
+					<label class="col-form-label col-4">Password: </label>
+					<div class="col-8">
+						<input type="password" class="form-control" th:name="password" required minlength="3" maxlength="20"/>
+					</div>
+				</div>	
+				
+				<div>
+					<button type="submit" class="btn btn-primary">Log In</button>
+				</div>	
+				<br>
+				<div class="container text-center">
+					<div class="alert alert-danger" role="alert" th:text="${login_error}" th:if="${login_error}"></div>
+				</div>					
+			</div>
+		</form>
+			</div>
+		</div>
+  
+</body>
+</html>
